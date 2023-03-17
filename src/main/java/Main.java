@@ -1,27 +1,22 @@
-import static com.raylib.Jaylib.RAYWHITE;
-import static com.raylib.Jaylib.VIOLET;
-import static com.raylib.Raylib.*;
+import static com.raylib.Jaylib.*;
 
 public class Main {
     public static void main(String args[]) {
-        InitWindow(800, 450, "Demo");
+        InitWindow(600, 400, "JavaPong");
         SetTargetFPS(60);
-        Camera3D camera = new Camera3D()
-                ._position(new Vector3().x(18).y(16).z(18))
-                .target(new Vector3())
-                .up(new Vector3().x(0).y(1).z(0))
-                .fovy(45).projection(CAMERA_PERSPECTIVE);
-        SetCameraMode(camera, CAMERA_ORBITAL);
-
+        Character c1 = new Character(10,160,10,80);
+        Character c2 = new Character(580,160,10,80);
+        Character ball = new Character(300,200,7,7,2,2);
         while (!WindowShouldClose()) {
-            UpdateCamera(camera);
             BeginDrawing();
-            ClearBackground(RAYWHITE);
-            BeginMode3D(camera);
-            DrawGrid(20, 1.0f);
-            EndMode3D();
-            DrawText("Hello world", 190, 200, 20, VIOLET);
-            DrawFPS(20, 20);
+            ClearBackground(GRAY);
+            DrawLine(300,0,300,400,WHITE);
+            DrawText(c1.getScore()+"",200,10,20,WHITE);
+            DrawText(c2.getScore()+"",400,10,20,WHITE);
+            c1.draw(KEY_W,KEY_S);
+            c2.draw(KEY_UP,KEY_DOWN);
+            ball.balldraw();
+            ball.collision(c1,c2);
             EndDrawing();
         }
         CloseWindow();
