@@ -1,3 +1,5 @@
+import com.raylib.Jaylib;
+
 import static com.raylib.Jaylib.*;
 
 public class Character {
@@ -35,6 +37,7 @@ public class Character {
             this.move(5);
         }
     }
+
     public void move(int y){
         posY += y;
         if (posY < 0){
@@ -45,11 +48,13 @@ public class Character {
         }
     }
     public void collision(Character c1, Character c2){
-       if (posX-w < c1.posX+ c1.w && posX + w > c1.posX && posY < c1.posY + c1.h && posY + w > c1.posY){
+        if(CheckCollisionCircleRec(new Jaylib.Vector2(posX,posY),w,new Jaylib.Rectangle(c2.posX,c2.posY,c2.w,c2.h))){
             ballX = -ballX;
+            posX -= 5;
         }
-        if (posX < c2.posX+ c2.w && posX + w > c2.posX && posY < c2.posY + c2.h && posY + w > c2.posY){
+        if(CheckCollisionCircleRec(new Jaylib.Vector2(posX,posY),w,new Jaylib.Rectangle(c1.posX,c1.posY,c1.w,c1.h))){
             ballX = -ballX;
+            posX += 5;
         }
         if (posY < 0){
             posY = 0;

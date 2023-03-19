@@ -1,12 +1,12 @@
 import static com.raylib.Jaylib.*;
 
 public class Main {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         InitWindow(600, 400, "JavaPong");
         SetTargetFPS(60);
-        Character c1 = new Character(10,160,10,80);
-        Character c2 = new Character(580,160,10,80);
-        Character ball = new Character(300,200,7,7,2,2);
+        Character c1 = new Character(10,160,5,80);
+        Character c2 = new Character(585,160,5,80);
+        Character ball = new Character(300,200,7,7,6,6);
         while (!WindowShouldClose()) {
             BeginDrawing();
             ClearBackground(GRAY);
