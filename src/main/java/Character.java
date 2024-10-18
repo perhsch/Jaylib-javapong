@@ -1,4 +1,5 @@
 import com.raylib.Jaylib;
+import java.util.Random;
 
 import static com.raylib.Jaylib.*;
 
@@ -12,7 +13,12 @@ public class Character {
         this.h = h;
         this.score = 0;
     }
-    public Character(int posX, int posY,int w,int h,int ballX,int ballY){
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public Character(int posX, int posY, int w, int h, int ballX, int ballY){
         this.posX = posX;
         this.posY = posY;
         this.w = w;
@@ -23,6 +29,7 @@ public class Character {
     public int getScore(){
         return score;
     }
+
     public void balldraw(){
         DrawCircle(posX,posY,w,WHITE);
         posX += ballX;
@@ -37,7 +44,27 @@ public class Character {
             this.move(5);
         }
     }
-
+    public void aidraw(Character ball){
+        DrawRectangle(posX,posY,w,h,WHITE);
+        int BallPosY = ball.getPosY() - h/2;
+        if (posY>BallPosY) {
+            this.move(-5);
+        }
+        if (posY<BallPosY) {
+            this.move(5);
+        }
+    }
+    public void resetball() {
+        Random rand = new Random();
+        this.posX = 300;
+        this.posY = 200;
+        this.ballX = rand.nextBoolean() ? -5 : 5;
+        this.ballY = rand.nextBoolean() ? -5 : 5;
+    }
+    public void resetpaddle(){
+        this.score = 0;
+        this.posY = 160;
+    }
     public void move(int y){
         posY += y;
         if (posY < 0){
@@ -47,14 +74,19 @@ public class Character {
             posY = 400 - h;
         }
     }
+
     public void collision(Character c1, Character c2){
         if(CheckCollisionCircleRec(new Jaylib.Vector2(posX,posY),w,new Jaylib.Rectangle(c2.posX,c2.posY,c2.w,c2.h))){
             ballX = -ballX;
             posX -= 5;
+            ballX++;
+            ballY++;
         }
         if(CheckCollisionCircleRec(new Jaylib.Vector2(posX,posY),w,new Jaylib.Rectangle(c1.posX,c1.posY,c1.w,c1.h))){
             ballX = -ballX;
             posX += 5;
+            ballX++;
+            ballY++;
         }
         if (posY < 0){
             posY = 0;
@@ -65,15 +97,12 @@ public class Character {
             ballY = -ballY;
         }
         if (posX<0){
-            posX = 300;
-            posY = 200;
+           this.resetball();
             c2.score++;
         }
         if (posX>600){
-            posX = 300;
-            posY = 200;
+            this.resetball();
             c1.score++;
         }
     }
-
 }
