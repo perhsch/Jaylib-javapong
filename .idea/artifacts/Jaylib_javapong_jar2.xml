@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Jaylib-javapong:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Jaylib_javapong_jar</output-path>
+    <root id="archive" name="Jaylib-javapong.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="Jaylib-javapong.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/uk.co.electronstudio.jaylib/jaylib/4.2.0-1/bd8b3687d71b52ac79a3b8f53929b86f57a770c1/jaylib-4.2.0-1.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Gradle: org.junit.jupiter:junit-jupiter-engine:5.7.0" />
+      <element id="library" level="project" name="Gradle: org.opentest4j:opentest4j:1.2.0" />
+      <element id="library" level="project" name="Gradle: org.junit.jupiter:junit-jupiter-api:5.7.0" />
+      <element id="library" level="project" name="Gradle: org.junit.platform:junit-platform-engine:1.7.0" />
+      <element id="library" level="project" name="Gradle: org.junit.platform:junit-platform-commons:1.7.0" />
+      <element id="library" level="project" name="Gradle: org.apiguardian:apiguardian-api:1.1.0" />
+    </root>
+  </artifact>
+</component>
